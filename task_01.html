@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Шахматы</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+ 
+<body>
+    <div class = 'cont'>
+        <div class="horizontal h1"></div>
+        <div class="cont_2">
+            <div class="vertical v1"></div>
+            <div class="field" id = 'field'></div>
+            <div class="vertical v2"></div>    
+        </div>
+        <div class="horizontal h2"></div>
+    </div>
+    
+    <script>
+        
+        function set_name_for_column(class_add = "") {
+            let col_names = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+            for (let i = 1; i <= 8; i++) {
+                let column_name = document.createElement("div");
+                column_name.classList.add('column_name');
+
+                column_name.innerHTML = col_names[i-1];
+                document.querySelector('.' + class_add).appendChild(column_name);
+            }
+        }
+
+        function set_num_for_str(n, class_add = "") {
+            let str_num = document.createElement("div");
+            str_num.classList.add("str_num");
+            str_num.innerHTML = n;
+            document.querySelector('.' + class_add).appendChild(str_num);
+        }
+
+        set_name_for_column("v1");
+        var chess_field = document.querySelector('.field');
+     
+        for (let i = 1; i <= 8; i++) {
+            set_num_for_str(i, "h1");
+            for (let j = 1; j <= 8; j++) {
+                let is_white = ((i % 2 == 0 && j % 2 == 0) || (i % 2 != 0 && j % 2 != 0));
+                let cell = document.createElement('div')
+                cell.classList.add('cell');
+                cell.classList.add(is_white ? 'w' : 'b');
+                chess_field.appendChild(cell);   
+               
+            } 
+            set_num_for_str(i, "h2");
+        }
+        set_name_for_column("v2");
+    </script>
+</body>
+ 
+</html>
